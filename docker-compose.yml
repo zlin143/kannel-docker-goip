@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  kannel:
+    image: mrkhaan/kannel:latest
+    container_name: goip-kannel
+    restart: unless-stopped
+    ports:
+      - "13000:13000"  # HTTP Admin
+      - "13001:13001"  # SMS Service
+      - "13013:13013"  # Sendsms
+    volumes:
+      - ./kannel.conf:/etc/kannel/kannel.conf
+    environment:
+      - LOG_LEVEL=0
